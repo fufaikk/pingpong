@@ -67,12 +67,12 @@ while game:
         speed_y *= -1
     if sprite.collide_rect(racket, ball) or sprite.collide_rect(racket2, ball):
         speed_x *= -1
-        if ball.rect.x < 0:
-            window.blit(text_1, (200, 200))  
-            finish = True
-        if ball.rect.x > 700:
-            window.blit(text_2, (200, 200)) 
-            finish = True  
+    if ball.rect.x < 0:
+        window.blit(text_1, (200, 200))  
+        finish = True
+    if ball.rect.x > 700:
+        window.blit(text_2, (200, 200)) 
+        finish = True  
     for i in event.get():
         if i.type == QUIT:
             game = False
