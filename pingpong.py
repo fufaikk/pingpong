@@ -21,15 +21,21 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Player(GameSprite):
-    def update(self):
+    def update_r(self):
         keys = key.get_pressed()
-        if keys[K_LEFT] and self.rect.x >= 0:
-            self.rect.x -= self.speed
-        if keys[K_RIGHT] and self.rect.x <= 650:
-            self.rect.x += self.speed
+        if keys[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_DOWN] and self.rect.y < 400:
+            self.rect.y += self.speed
+    def update_l(self):
+        keys = key.get_pressed()
+        if keys[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y < 400:
+            self.rect.y += self.speed
 
-rocket = Player('прямоугольник.png', 0, 0, 4, 20, 80)
-rocket2 = Player('прямоугольник.png', 620, 480, 4, 20, 80)
+racket = Player('прямоугольник.png', 100, 20, 4, 40, 100)
+racket2 = Player('прямоугольник.png', 600, 400, 4, 40, 100)
 
 ball = GameSprite('мяч.png', 350, 250, 4, 30, 30)
 
@@ -47,9 +53,12 @@ finish = False
 while game:
     if not finish:
         pass
-    rocket.reset()
-    rocket2.reset()
+    window.fill((160,222,153))
     ball.reset()
+    racket.update_l()
+    racket2.update_r()
+    racket.reset()
+    racket2.reset()
     for i in event.get():
         if i.type == QUIT:
             game = False
